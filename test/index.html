@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Test Suite</title>
+    <link rel="stylesheet" href="../libs/qunit/qunit.css" media="screen" />
+    <script src="../libs/qunit/qunit.js"></script>
+    <script src="../libs/requirejs/require.js"></script>
+    <script>
+        QUnit.config.autostart = false;
+
+        require( [ 'visualcaptcha-tests' ], function() {
+            QUnit.start();
+        } );
+    </script>
+  </head>
+<body>
+<div id="qunit"></div>
+<div id="qunit-fixture"></div>
+</body>
+</html>

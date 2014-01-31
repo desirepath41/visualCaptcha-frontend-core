@@ -1,0 +1,6 @@
+    define( 'angular', function() {
+        return angular;
+    } );
+
+    require( 'visualcaptcha.angular' );
+} ));

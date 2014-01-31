@@ -1,0 +1,23 @@
+{
+  "name": "visualcaptcha",
+  "title": "visualCaptcha",
+  "description": "A JavaScript library for visualCaptcha with Vanilla JS, jQuery and Angular JS integrations.",
+  "version": "0.0.1",
+  "homepage": "http://visualcaptcha.net",
+  "author": {
+    "name": "emotionLoop",
+    "url": "http://emotionloop.com/"
+  },
+  "bugs": "https://github.com/emotionLoop/visualCaptcha-core/issues",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/emotionLoop/visualCaptcha-core.git"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/emotionLoop/visualCaptcha-core/blob/master/LICENSE"
+    }
+  ],
+  "keywords": ["visual", "captcha", "emotion", "loop"]
+}
