@@ -16,7 +16,7 @@ define( function() {
         params = params || [];
 
         if ( config.namespace && config.namespace.length > 0 ) {
-            params.push( 'namespace=' + config.namespace );
+            params.push( config.namespaceFieldName + '=' + config.namespace );
         }
 
         params.push( 'r=' + config.randomNonce );
