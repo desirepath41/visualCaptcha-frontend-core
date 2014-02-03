@@ -8,7 +8,8 @@ define([ 'visualcaptcha/xhr-request' ], function( xhrRequest ) {
             /* REQUEST */
             request: xhrRequest,
             url: 'http://localhost:8282',
-            path: '',
+            namespace: '',
+            namespaceFieldName: 'namespace',
             routes: {
                 start: '/start',
                 image: '/image',
@@ -42,8 +43,12 @@ define([ 'visualcaptcha/xhr-request' ], function( xhrRequest ) {
             config.url = options.url;
         }
 
-        if ( options.path ) {
-            config.path = options.path;
+        if ( options.namespace ) {
+            config.namespace = options.namespace;
+        }
+
+        if ( options.namespaceFieldName ) {
+            config.namespaceFieldName = options.namespaceFieldName;
         }
 
         if ( typeof options.autoRefresh !== 'undefined' ) {

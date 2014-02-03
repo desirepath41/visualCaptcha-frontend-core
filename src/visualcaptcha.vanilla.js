@@ -26,6 +26,8 @@ define( [
             selected;
 
         captchaHTML =
+            // Add namespace input, if present
+            templates.namespaceInput( captcha ) +
             // Add audio element, if supported
             templates.accessibility( captcha, config.language ) +
             // Add image elements
@@ -161,7 +163,8 @@ define( [
 
     return function( element, options ) {
         var config,
-            captcha;
+            captcha,
+            captchaConfig;
 
         config = deepExtend( {
             imgPath: '/',
@@ -175,15 +178,21 @@ define( [
         // Add visualCaptcha class to element
         helpers.addClass( element, 'visualCaptcha' );
 
+        // Store captcha config
+        captchaConfig = deepExtend( config.captcha, {
+            callbacks: {
+                loading: _loading.bind( null, element ),
+                loaded: _loaded.bind( null, element )
+            }
+        } );
+
+        // Load namespace from data-namespace attribute
+        if ( typeof element.getAttribute( 'data-namespace' ) !== 'undefined' ) {
+            captchaConfig.namespace = element.getAttribute( 'data-namespace' );
+        }
+
         // Initialize visualCaptcha
-        captcha = visualCaptcha(
-            deepExtend( config.captcha, {
-                callbacks: {
-                    loading: _loading.bind( null, element ),
-                    loaded: _loaded.bind( null, element )
-                }
-            } )
-        );
+        captcha = visualCaptcha( captchaConfig );
 
         captcha.getCaptchaData = _getCaptchaData.bind( null, element );
 

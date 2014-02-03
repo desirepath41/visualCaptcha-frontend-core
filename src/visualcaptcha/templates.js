@@ -8,7 +8,8 @@ define( function() {
         _accessibilityHTML,
         _imagesHTML,
         _audioInputHTML,
-        _imageInputHTML;
+        _imageInputHTML,
+        _namespaceInputHTML;
 
     // Template engine
     _t = function( str, d ) {
@@ -143,11 +144,33 @@ define( function() {
         return _t( string, params );
     };
 
+    _namespaceInputHTML = function( captcha ) {
+        var string,
+            params,
+            namespace = captcha.namespace();
+
+        // Ensure namespace is present
+        if ( !namespace || namespace.length === 0 ) {
+            return '';
+        }
+
+        string =
+            '<input type="hidden" name="{fieldName}" value="{value}" />';
+
+        params = {
+            fieldName: captcha.namespaceFieldName(),
+            value: namespace
+        };
+
+        return _t( string, params );
+    };
+
     return {
         buttons: _buttonsHTML,
         accessibility: _accessibilityHTML,
         images: _imagesHTML,
         audioInput: _audioInputHTML,
-        imageInput: _imageInputHTML
+        imageInput: _imageInputHTML,
+        namespaceInput: _namespaceInputHTML
     };
 } );

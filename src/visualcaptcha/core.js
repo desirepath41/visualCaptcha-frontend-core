@@ -3,13 +3,26 @@
 define( function() {
     'use strict';
 
-    var _refresh,
+    var _addUrlParams,
+        _refresh,
         _startUrl,
         _imageUrl,
         _audioUrl,
         _imageValue,
         _isRetina,
         _supportsAudio;
+
+    _addUrlParams = function( config, url, params ) {
+        params = params || [];
+
+        if ( config.namespace && config.namespace.length > 0 ) {
+            params.push( 'namespace=' + config.namespace );
+        }
+
+        params.push( 'r=' + config.randomNonce );
+
+        return url + '?' + params.join( '&' );
+    };
 
     _refresh = function( config ) {
         var core = this,
@@ -57,19 +70,38 @@ define( function() {
     };
 
     _startUrl = function( config ) {
-        return config.url + config.routes.start + '/' + config.numberOfImages + '?r=' + config.randomNonce;
+        var url = config.url + config.routes.start + '/' + config.numberOfImages;
+
+        return _addUrlParams( config, url );
     };
 
     _imageUrl = function( config, i ) {
-        if ( i >= 0 && i < config.numberOfImages ) {
-            return config.url + config.routes.image + '/' + i + '?' + (_isRetina() ? 'retina=1&' : '') + 'r=' + config.randomNonce;
+        var url = '',
+            params = [];
+
+        // Is the image index valid?
+        if ( i < 0 || i >= config.numberOfImages ) {
+            return url;
         }
 
-        return '';
+        // If retina is required, add url param
+        if ( this.isRetina() ) {
+            params.push( 'retina=1' );
+        }
+
+        url = config.url + config.routes.image + '/' + i;
+
+        return _addUrlParams( config, url, params );
     };
 
     _audioUrl = function( config, ogg ) {
-        return config.url + config.routes.audio + (ogg ? '/ogg' : '') + '?r=' + config.randomNonce;
+        var url = config.url + config.routes.audio;
+
+        if ( ogg ) {
+            url += '/ogg';
+        }
+
+        return _addUrlParams( config, url );
     };
 
     _imageValue = function( config, i ) {
@@ -115,7 +147,9 @@ define( function() {
             imageUrl,
             audioUrl,
             imageFieldName,
-            audioFieldName;
+            audioFieldName,
+            namespace,
+            namespaceFieldName;
 
         refresh = function() {
             return _refresh.call( this, config );
@@ -157,6 +191,14 @@ define( function() {
             return config.audioFieldName;
         };
 
+        namespace = function() {
+            return config.namespace;
+        };
+
+        namespaceFieldName = function() {
+            return config.namespaceFieldName;
+        };
+
         core = {
             refresh: refresh,
             isLoading: isLoading,
@@ -168,6 +210,8 @@ define( function() {
             audioUrl: audioUrl,
             imageFieldName: imageFieldName,
             audioFieldName: audioFieldName,
+            namespace: namespace,
+            namespaceFieldName: namespaceFieldName,
             isRetina: _isRetina,
             supportsAudio: _supportsAudio
         };

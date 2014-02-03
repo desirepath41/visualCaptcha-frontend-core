@@ -29,6 +29,8 @@ define( [
         var captchaHTML;
 
         captchaHTML =
+            // Add namespace input, if present
+            templates.namespaceInput( captcha ) +
             // Add audio element, if supported
             templates.accessibility( captcha, config.language ) +
             // Add image elements
@@ -164,16 +166,22 @@ define( [
 
         return this.each( function() {
             var element = $( this ),
-                captcha;
+                captcha,
+                captchaConfig;
 
-            captcha = visualCaptcha(
-                $.extend( config.captcha, {
-                    callbacks: {
-                        loading: _loading.bind( null, config, element ),
-                        loaded: _loaded.bind( null, config, element )
-                    }
-                } )
-            );
+            captchaConfig = $.extend( config.captcha, {
+                callbacks: {
+                    loading: _loading.bind( null, config, element ),
+                    loaded: _loaded.bind( null, config, element )
+                }
+            } );
+
+            // Load namespace from data-namespace attribute on element
+            if ( typeof element.data( 'namespace' ) !== 'undefined' ) {
+                captchaConfig.namespace = element.data( 'namespace' );
+            }
+
+            captcha = visualCaptcha( captchaConfig );
 
             captcha.getCaptchaData = _getCaptchaData.bind( null, element );
 

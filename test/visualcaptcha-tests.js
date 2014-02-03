@@ -54,7 +54,7 @@ if ( typeof require === 'function' && require.config ) {
             autoRefresh: false
         } );
 
-        expect( 13 );
+        expect( 15 );
 
         equal( typeof captcha === 'object', true );
 
@@ -68,6 +68,8 @@ if ( typeof require === 'function' && require.config ) {
         equal( typeof captcha.audioUrl === 'function', true );
         equal( typeof captcha.imageFieldName === 'function', true );
         equal( typeof captcha.audioFieldName === 'function', true );
+        equal( typeof captcha.namespace === 'function', true );
+        equal( typeof captcha.namespaceFieldName === 'function', true );
         equal( typeof captcha.isRetina === 'function', true );
         equal( typeof captcha.supportsAudio === 'function', true );
     } );
