@@ -10,15 +10,13 @@ define( [
         .module( 'visualCaptcha', [] )
         .directive( 'captcha', function() {
             return {
-                restrict: 'E',
+                restrict: 'A',
                 scope: {
                     'options': '='
                 },
                 link: function( scope, element ) {
                     visualCaptcha( element[ 0 ], scope.options );
-                },
-                template: '<div></div>',
-                replace: true
+                }
             };
         } );
 } );
