@@ -120,7 +120,7 @@ define( function() {
             params;
 
         string =
-            '<input class="audioField" type="text" name="{audioFieldName}" value="" autocomplete="off" />';
+            '<input class="form-control audioField" type="text" name="{audioFieldName}" value="" autocomplete="off" />';
 
         params = {
             audioFieldName: captcha.audioFieldName()
@@ -134,7 +134,7 @@ define( function() {
             params;
 
         string =
-            '<input class="imageField" type="hidden" name="{imageFieldName}" value="{value}" readonly="readonly" />';
+            '<input class="form-control imageField" type="hidden" name="{imageFieldName}" value="{value}" readonly="readonly" />';
 
         params = {
             imageFieldName: captcha.imageFieldName(),
