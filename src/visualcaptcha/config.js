@@ -10,7 +10,7 @@ define([ 'visualcaptcha/xhr-request' ], function( xhrRequest ) {
         var config = {
             /* REQUEST */
             request: xhrRequest,
-            url: urlArray.join( '/' ),
+            url: urlArray.join( '/' ).slice(0, -1),
             namespace: '',
             namespaceFieldName: 'namespace',
             routes: {
