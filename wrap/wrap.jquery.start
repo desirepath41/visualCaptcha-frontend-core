@@ -2,6 +2,6 @@
     if ( typeof define === 'function' && define.amd ) {
         define( [ 'jquery' ], factory );
     } else {
-        factory( root.$ );
+        factory( root.jQuery );
     }
 }( this, function( $ ) {
