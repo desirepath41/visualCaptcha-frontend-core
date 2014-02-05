@@ -4,10 +4,13 @@ define([ 'visualcaptcha/xhr-request' ], function( xhrRequest ) {
     'use strict';
 
     return function( options ) {
+        var urlArray = window.location.href.split( '/' );
+        urlArray[urlArray.length-1]='';
+
         var config = {
             /* REQUEST */
             request: xhrRequest,
-            url: 'http://localhost:8282',
+            url: urlArray.join( '/' ),
             namespace: '',
             namespaceFieldName: 'namespace',
             routes: {

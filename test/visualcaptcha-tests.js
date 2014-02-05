@@ -27,6 +27,7 @@ if ( typeof require === 'function' && require.config ) {
     }
 }( this, function( visualCaptcha ) {
     'use strict';
+    var hostUrl = "http://localhost:8282";
 
     /*
      ======== A Handy Little QUnit Reference ========
@@ -51,6 +52,7 @@ if ( typeof require === 'function' && require.config ) {
 
     test( 'validate functions', function() {
         var captcha = visualCaptcha( {
+            url: hostUrl,
             autoRefresh: false
         } );
 
@@ -94,6 +96,7 @@ if ( typeof require === 'function' && require.config ) {
         };
 
         var captcha = visualCaptcha( {
+            url: hostUrl,
             autoRefresh: false,
             callbacks: {
                 loading: _loading,
@@ -119,6 +122,7 @@ if ( typeof require === 'function' && require.config ) {
         };
 
         visualCaptcha( {
+            url: hostUrl,
             numberOfImages: 7,
             callbacks: { loaded: _loaded }
         } );
@@ -135,6 +139,7 @@ if ( typeof require === 'function' && require.config ) {
         };
 
         visualCaptcha( {
+            url: hostUrl,
             callbacks: { loaded: _loaded }
         } );
     } );
@@ -151,6 +156,7 @@ if ( typeof require === 'function' && require.config ) {
         };
 
         visualCaptcha( {
+            url: hostUrl,
             numberOfImages: 1,
             callbacks: { loaded: _loaded }
         } );
@@ -168,6 +174,7 @@ if ( typeof require === 'function' && require.config ) {
         };
 
         visualCaptcha( {
+            url: hostUrl,
             numberOfImages: 1,
             callbacks: { loaded: _loaded }
         } );
@@ -185,6 +192,7 @@ if ( typeof require === 'function' && require.config ) {
         };
 
         visualCaptcha( {
+            url: hostUrl,
             callbacks: { loaded: _loaded }
         } );
     } );
@@ -200,6 +208,7 @@ if ( typeof require === 'function' && require.config ) {
         };
 
         visualCaptcha( {
+            url: hostUrl,
             callbacks: { loaded: _loaded }
         } );
     } );
@@ -215,6 +224,7 @@ if ( typeof require === 'function' && require.config ) {
         };
 
         visualCaptcha( {
+            url: hostUrl,
             callbacks: { loaded: _loaded }
         } );
     } );
@@ -236,6 +246,7 @@ if ( typeof require === 'function' && require.config ) {
         };
 
         visualCaptcha( {
+            url: hostUrl,
             request: _request,
             callbacks: { loaded: _loaded }
         } );
