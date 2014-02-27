@@ -24,6 +24,7 @@ define([ 'visualcaptcha/xhr-request' ], function( xhrRequest ) {
             autoRefresh: true,
             numberOfImages: 6,
             randomNonce: '',
+            randomParam: 'r',
             audioFieldName: '',
             imageFieldName: '',
             imageName: '',
@@ -74,6 +75,10 @@ define([ 'visualcaptcha/xhr-request' ], function( xhrRequest ) {
             if ( options.routes.audio ) {
                 config.routes.audio = options.routes.audio;
             }
+        }
+        
+        if ( options.randomParam ) {
+            config.randomParam = options.randomParam;
         }
 
         if ( options.callbacks ) {

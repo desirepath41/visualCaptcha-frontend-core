@@ -19,7 +19,7 @@ define( function() {
             params.push( config.namespaceFieldName + '=' + config.namespace );
         }
 
-        params.push( 'r=' + config.randomNonce );
+        params.push( config.randomParam + '=' + config.randomNonce );
 
         return url + '?' + params.join( '&' );
     };
