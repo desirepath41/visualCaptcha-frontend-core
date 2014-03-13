@@ -9,6 +9,8 @@ define( function() {
     // Credits: http://andrewdupont.net/2009/08/28/deep-extending-objects-in-javascript/
     //
     _deepExtend = function( dest, src ) {
+        dest = dest || {};
+        
         for ( var key in src ) {
             if ( src[ key ] &&
                 src[ key ].constructor &&
