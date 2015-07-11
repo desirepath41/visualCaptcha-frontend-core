@@ -72,7 +72,7 @@ The JavaScript object with the visualCaptcha core options can contain following 
 
 - `request` (default: `xhrRequest`) — function for sending an XHR request;
 - `url` (default: `'http://localhost:8282'`) — url for back-end;
-— `namespace` — the value of the parameter sent to the server for the namespace, if it's not set up, no namespace will be sent (using the default in the back-end);
+- `namespace` — the value of the parameter sent to the server for the namespace, if it's not set up, no namespace will be sent (using the default in the back-end);
 - `namespaceFieldName` (default: `'namespace'`) — the name of the parameter sent to the server for the namespace;
 - `routes` — object with the following endpoint routes:
     - `start` (default: `'/start'`) — route to generate common data (image field name, image name, image values and audio field name);
