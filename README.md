@@ -34,7 +34,6 @@ grunt test
 grunt build
 ```
 
-
 ## Usage
 
 ### Initialization 
@@ -49,26 +48,60 @@ grunt build
     <script src="/path_to/visualcaptcha.js"></script>
     ```
 
-2. Initialize the visualCaptcha object with the `visualCaptcha( options )` javascript function that _returns a visualCaptcha object_, where `options` is a JavaScript object with the visualCaptcha core options:
+2. Create a visualCaptcha container into the HTML page:
 
-    ```javascript
-    var captcha = visualCaptcha( {
-        numberOfImages: 5,
-        callbacks: {
-            loading: function( captcha ){
-                console.log( 'I am loading.', captcha );
-            },
-            loaded: function( captcha ){
-                console.log( 'I am loaded.', captcha );
-            }
-        }
-    } );
+    ```html
+    <div id="sample-captcha"></div>
     ```
 
+3. Initialize the visualCaptcha object with the `visualCaptcha( element, options )` javascript function that _returns a visualCaptcha object_, where `options` is a JavaScript object with the visualCaptcha options:
+
+    ```javascript
+    var captcha = visualCaptcha( 'sample-captcha', {
+        imgPath: 'img/',
+        captcha: {
+            numberOfImages: 5,
+                callbacks: {
+                    loading: function( captcha ){
+                    console.log( 'I am loading.', captcha );
+                },
+                loaded: function( captcha ){
+                    console.log( 'I am loaded.', captcha );
+                }
+            }
+        }
+    });
+    ```
+
+### visualCaptcha options
+
+The JavaScript object of the visualCaptcha options can contain the following parameters:
+
+- `imgPath` (default: `'/'`) — path to the following interface icons:
+    - `accessibility.png`;
+    - `accessibility@2x.png`;
+    - `refresh.png`;
+    - `refresh@2x.png`;
+
+- `language` — object with the text values used for localization for visualCaptcha interface, defaults to:
+    ```
+    {
+        accessibilityAlt: 'Sound icon',
+        accessibilityTitle: 'Accessibility option: listen to a question and answer it!',
+        accessibilityDescription: 'Type below the <strong>answer</strong> to what you hear. Numbers or words:',
+        explanation: 'Click or touch the <strong>ANSWER</strong>',
+        refreshAlt: 'Refresh/reload icon',
+        refreshTitle: 'Refresh/reload: get new images and accessibility option!'
+    }
+    ```
+
+- `captcha` — object with the [visualCaptcha core options](#visualcaptcha-core-options)
+
+- `init` — callback function, used in AngularJS, with the captcha object as the first argument: `function ( captcha ) { /* ... */ }`.
 
 ### visualCaptcha core options
 
-The JavaScript object with the visualCaptcha core options can contain following parameters:
+The JavaScript object with the visualCaptcha core options can contain the following parameters:
 
 - `request` (default: `xhrRequest`) — function for sending an XHR request;
 - `url` (default: `'http://localhost:8282'`) — url for back-end;
@@ -90,7 +123,7 @@ The JavaScript object with the visualCaptcha core options can contain following 
 
 ### visualCaptcha object methods
 
-All the following methods are available from the _visualCaptcha core object_, that will be returned by the `visualCaptcha( options )` function (as described above, in “Initialization”, step 2).
+All the following methods are available from the _visualCaptcha core object_, that will be returned by the `visualCaptcha( element, options )` function (as described above, in “Initialization”, step 3).
 
 - `audioFieldName()` — returns the name of the accessibility (audio) input field;
 - `audioUrl()` — returns the URL of audio file;
@@ -104,6 +137,74 @@ All the following methods are available from the _visualCaptcha core object_, th
 - `numberOfImages()` — returns the number of generated image options;
 - `refresh()` — reloads visualCaptcha, sending a new request to the backend;
 - `supportsAudio()` — returns `true` if the browser supports HTML5 Audio, otherwise returns `false`;
+- `getCaptchaData()` — returns an object with some data for visualCaptcha:
+    - `.valid` — returns `true` if an image or audio field _has been filled_, `false` otherwise. It does not mean the answer/selection is valid, but rather that something has been answered/selected;
+    - `.name` — the field name of the filled input (image or audio);
+    - `.value` — the value of the filled input (image or audio);
+
+
+### Initialization of multiple captchas on the same page
+
+There are two fields: `namespace` and `namespaceFieldName` that you need to use, for creating multiple captchas.
+The `namespace` option can be loaded from the `data-namespace` attribute:
+```html
+<form id="login-form">
+    <!-- ... -->
+    <div id="login-captcha" data-namespace="login"></div>
+    <!-- ... -->
+</form>
+
+<form id="search-form">
+    <!-- ... -->
+    <div id="search-captcha" data-namespace="search"></div>
+    <!-- ... -->
+</form>
+```
+
+And the `namespaceFieldName` option can be loaded from the captcha options (this is the name of the parameter sent to the back-end, which you'll have to setup to use when initializing visualCaptcha's session):
+```javascript
+var loginCaptcha = visualCaptcha( 'login-captcha', {
+    captcha: {
+        namespaceFieldName: 'myFieldName'
+    }
+});
+
+var searchCaptcha = visualCaptcha( 'search-captcha', {
+    captcha: {
+        namespaceFieldName: 'myFieldName'
+    }
+});
+```
+
+Such configuration will create a hidden field in each form with a captcha, with the field name of `namespaceFieldName` and the field value of `namespace`, which you can then catch on the back-end.
+
+
+### Localization
+
+When initializing visualCaptcha, send a `language` object. For example:
+
+```javascript
+// Object with localized strings
+var portugueseTexts = {
+    accessibilityAlt: 'Ícone de Som',
+    accessibilityTitle: 'Opção de Acessibilidade: ouça uma questão e responda à mesma!',
+    accessibilityDescription: 'Escreva em baixo a <strong>resposta</strong> ao que ouve. Números ou palavras:',
+    explanation: 'Clique ou toque no/a <strong>ANSWER</strong>',
+    refreshAlt: 'Ícone de Refrescar/recarregar',
+    refreshTitle: 'Refrescar/recarregar: obtenha novas imagens e opção de acessibilidade!'
+};
+
+var el = $( '#sample-captcha' ).visualCaptcha( {
+    imgPath: 'img/',
+    captcha: {
+        numberOfImages: 5
+    },
+    language: portugueseTexts
+});
+
+// Use the following code to get the captcha object, with jQuery
+var captcha = el.data( 'captcha' );
+```
 
 
 ## License
