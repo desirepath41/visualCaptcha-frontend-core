@@ -2,7 +2,7 @@
   "name": "visualcaptcha",
   "title": "visualCaptcha",
   "description": "A JavaScript library for visualCaptcha with Vanilla JS, jQuery and Angular JS integrations.",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "homepage": "http://visualcaptcha.net",
   "author": {
     "name": "emotionLoop",
@@ -19,5 +19,5 @@
       "url": "https://github.com/emotionLoop/visualCaptcha-core/blob/master/LICENSE"
     }
   ],
-  "keywords": ["visual", "captcha", "emotion", "loop"]
+  "keywords": ["visual", "captcha", "emotion", "loop", "emotionloop"]
 }

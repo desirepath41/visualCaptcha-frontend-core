@@ -8,14 +8,14 @@
   "scripts": {
     "test": "grunt qunit"
   },
-  "devDependencies": {
-    "grunt-contrib-less": "0.9.0",
-    "grunt-contrib-clean": "0.5.0",
-    "grunt-contrib-jshint": "0.8.0",
-    "grunt-contrib-qunit": "0.3.0",
-    "grunt-contrib-watch": "0.5.3",
-    "grunt-requirejs": "0.4.0",
-    "grunt-banner": "0.2.0",
-    "grunt": "~0.4.0"
+  "dependencies": {
+    "grunt-contrib-less": "1.0.x",
+    "grunt-contrib-clean": "0.6.x",
+    "grunt-contrib-jshint": "0.11.x",
+    "grunt-contrib-qunit": "0.7.x",
+    "grunt-contrib-watch": "0.6.x",
+    "grunt-requirejs": "0.4.x",
+    "grunt-banner": "0.4.x",
+    "grunt": "0.4.x"
   }
 }

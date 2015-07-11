@@ -1,7 +1,9 @@
-visualCaptcha-frontend-core
-===========================
+[![Codacy](https://www.codacy.com/project/badge/aab082777ee24865b58faee9df952144)](https://www.codacy.com/app/bruno-bernardino/visualCaptcha-frontend-core)
+[![Code Climate](https://codeclimate.com/github/emotionLoop/visualCaptcha-frontend-core/badges/gpa.svg)](https://codeclimate.com/github/emotionLoop/visualCaptcha-frontend-core)
 
-A JavaScript library for visualCaptcha front-end core files, for development and building the bower packages
+# visualCaptcha-frontend-core
+
+A JavaScript library for visualCaptcha front-end core files, for development and building the individual bower packages.
 
 
 ## Installation
@@ -37,13 +39,17 @@ grunt build
 
 ### Initialization 
 
-1. Include visualCaptcha front-end core library into the HTML page:
+1. Include the visualCaptcha front-end core JS library and CSS styles into the HTML page:
 
     ```html
+    <!-- Somewhere inside the HEAD tag -->
+    <link href="/path_to/visualcaptcha.css" media="all" rel="stylesheet">
+
+    <!-- Somewhere inside the BODY tag, ideally at the bottom -->
     <script src="/path_to/visualcaptcha.js"></script>
     ```
 
-2. Initialize captcha object with the `visualCaptcha( options )` javascript function that _returns visualCaptcha object_, where `options` is a JSON object of the visualCaptcha core options:
+2. Initialize the visualCaptcha object with the `visualCaptcha( options )` javascript function that _returns a visualCaptcha object_, where `options` is a JavaScript object with the visualCaptcha core options:
 
     ```javascript
     var captcha = visualCaptcha( {
@@ -60,64 +66,46 @@ grunt build
     ```
 
 
-### VisualCaptcha core options
+### visualCaptcha core options
 
-JSON object of the visualCaptcha core options can contain next parameters:
+The JavaScript object with the visualCaptcha core options can contain following parameters:
 
-- `request` (default: `xhrRequest`) — function for sending request;
+- `request` (default: `xhrRequest`) — function for sending an XHR request;
 - `url` (default: `'http://localhost:8282'`) — url for back-end;
-<!-- !FIXME - `path` (default: `''`) — is the url prefix; -->
-<!-- !FIXME - `autoRefresh` (default: `true`) — if it is `true` it will load the data when it's constructed; -->
-- `numberOfImages` (default: `6`) — number of generated images for visualCaptcha;
+— `namespace` — the value of the parameter sent to the server for the namespace, if it's not set up, no namespace will be sent (using the default in the back-end);
 - `namespaceFieldName` (default: `'namespace'`) — the name of the parameter sent to the server for the namespace;
-— `namespace` — the value of the parameter sent to the server for the namespace, if it's not setted up, no namespace will be sent;
-- `randomParam` (default: `'r'`) — name of random value parameter which is for disable the cache;
-- `routes` — object with next endpoint routes:
+- `routes` — object with the following endpoint routes:
     - `start` (default: `'/start'`) — route to generate common data (image field name, image name, image values and audio field name);
     - `image` (default: `'/image'`) — route to get generated image file by index;
     - `audio` (default: `'/audio'`) — route to get generated audio file;
-- `callbacks` — object with next callback functions:
-    - `loading: function( captcha ) { /* ... */ }` — function that calls on loading data;
-    - `loaded: function( captcha ) { /* ... */ }` — function that calls when visualCaptcha data is loaded.
+- `isLoading` (default: `false`) — if it is `true` then visualCaptcha is actively loading;
+- `hasLoaded` (default: `false`) — if it is `true` then visualCaptcha has loaded and is ready;
+- `autoRefresh` (default: `true`) — if it is `true` it will load the data when visualCaptcha's ready (DOM ready);
+- `numberOfImages` (default: `6`) — number of generated image options for visualCaptcha;
+- `randomParam` (default: `'r'`) — name of random value parameter which is used for disabling cache;
+- `callbacks` — object with the following callback functions:
+    - `loading: function( captcha ) { /* ... */ }` — function that is called as soon as visualCaptcha starts loading data;
+    - `loaded: function( captcha ) { /* ... */ }` — function that is called as soon as visualCaptcha finishes loading data.
 
 
-### VisualCaptcha object methods
+### visualCaptcha object methods
 
-All next methods are available from _VisualCaptcha core object_ that will be returned by `visualCaptcha( options )` funciton (as it was described above, in “Initialization”, step 2).
+All the following methods are available from the _visualCaptcha core object_, that will be returned by the `visualCaptcha( options )` function (as described above, in “Initialization”, step 2).
 
-- `audioFieldName()` — returns field name of accessibility (audio) captcha;
-- `audioUrl()` — returns URL of audio file;
-- `hasLoaded()` — returns `true` if VisualCaptcha is loaded, else returns `false`;
-- `imageFieldName()` — returns field name of image captcha;
-- `imageName()` — name of the image object for pass visualCaptcha correct;
-- `imageUrl( index )` — returns URL of image file by index, index is number;
-- `imageValue( index )` — returns value of image file by index, index is number;
-- `isLoading()` — returns `true` if VisualCaptcha is loading, else returns `false`;
-- `isRetina()` — returns `true` for devises with retina display, else returns `false`;
-- `numberOfImages()` — returns number of generated images;
-- `refresh()` — reloads visual captcha, sends new request to the back-end;
-- `supportsAudio()` — returns `true` if browser supports HTML 5 Audio, else returns `false`;
+- `audioFieldName()` — returns the name of the accessibility (audio) input field;
+- `audioUrl()` — returns the URL of audio file;
+- `hasLoaded()` — returns `true` if visualCaptcha has loaded, otherwise returns `false`;
+- `imageFieldName()` — returns the name of the image input field;
+- `imageName()` — returns the textual name of the correct image (for the helper, to let the user know which image to select);
+- `imageUrl( index )` — returns the URL of the image file at index `index` (number);
+- `imageValue( index )` — returns the value of the image file at index `index` (number);
+- `isLoading()` — returns `true` if visualCaptcha is loading, otherwise returns `false`;
+- `isRetina()` — returns `true` if the current device has a `window.devicePixelRatio > 1`, otherwise returns `false`;
+- `numberOfImages()` — returns the number of generated image options;
+- `refresh()` — reloads visualCaptcha, sending a new request to the backend;
+- `supportsAudio()` — returns `true` if the browser supports HTML5 Audio, otherwise returns `false`;
 
 
 ## License
 
-The MIT License (MIT)
-
-Copyright (c) 2014 emotionLoop
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of
-this software and associated documentation files (the "Software"), to deal in
-the Software without restriction, including without limitation the rights to
-use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
-the Software, and to permit persons to whom the Software is furnished to do so,
-subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
-FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
-COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
-IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
-CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+View the [LICENSE](LICENSE) file.

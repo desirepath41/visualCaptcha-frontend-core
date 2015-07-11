@@ -36,7 +36,8 @@ module.exports = function( grunt ) {
                     wrap: {
                         startFile: 'wrap/wrap.start',
                         endFile: 'wrap/wrap.end'
-                    }
+                    },
+                    optimize: "uglify"
                 }
             },
             'visualcaptcha.vanilla': {
@@ -51,7 +52,8 @@ module.exports = function( grunt ) {
                     wrap: {
                         startFile: 'wrap/wrap.vanilla.start',
                         endFile: 'wrap/wrap.vanilla.end'
-                    }
+                    },
+                    optimize: "uglify"
                 }
             },
             'visualcaptcha.jquery': {
@@ -68,7 +70,8 @@ module.exports = function( grunt ) {
                     wrap: {
                         startFile: 'wrap/wrap.jquery.start',
                         endFile: 'wrap/wrap.jquery.end'
-                    }
+                    },
+                    optimize: "uglify"
                 }
             },
             'visualcaptcha.angular': {
@@ -85,7 +88,60 @@ module.exports = function( grunt ) {
                     wrap: {
                         startFile: 'wrap/wrap.angular.start',
                         endFile: 'wrap/wrap.angular.end'
-                    }
+                    },
+                    optimize: "uglify"
+                }
+            },
+            'visualcaptcha.vanilla.src': {
+                options: {
+                    almond: true,
+                    baseUrl: 'src',
+                    paths: {
+                        'visualcaptcha.vanilla': './visualcaptcha.vanilla'
+                    },
+                    include: ['visualcaptcha.vanilla'],
+                    out: 'dist/visualcaptcha.vanilla.src.js',
+                    wrap: {
+                        startFile: 'wrap/wrap.vanilla.start',
+                        endFile: 'wrap/wrap.vanilla.end'
+                    },
+                    optimize: "none"
+                }
+            },
+            'visualcaptcha.jquery.src': {
+                options: {
+                    almond: true,
+                    baseUrl: 'src',
+                    paths: {
+                        'jquery': '../libs/jquery/jquery.min',
+                        'visualcaptcha.jquery': './visualcaptcha.jquery'
+                    },
+                    include: ['visualcaptcha.jquery'],
+                    exclude: ['jquery'],
+                    out: 'dist/visualcaptcha.jquery.src.js',
+                    wrap: {
+                        startFile: 'wrap/wrap.jquery.start',
+                        endFile: 'wrap/wrap.jquery.end'
+                    },
+                    optimize: "none"
+                }
+            },
+            'visualcaptcha.src.angular': {
+                options: {
+                    almond: true,
+                    baseUrl: 'src',
+                    paths: {
+                        'angular': '../libs/angular/angular.min',
+                        'visualcaptcha.angular': './visualcaptcha.angular'
+                    },
+                    include: ['visualcaptcha.angular'],
+                    exclude: ['angular'],
+                    out: 'dist/visualcaptcha.angular.src.js',
+                    wrap: {
+                        startFile: 'wrap/wrap.angular.start',
+                        endFile: 'wrap/wrap.angular.end'
+                    },
+                    optimize: "none"
                 }
             }
         },
@@ -93,10 +149,21 @@ module.exports = function( grunt ) {
             compile: {
                 options: {
                     path: ['less'],
-                    cleancss: true
+                    cleancss: true,
+                    optimize: "uglify"
                 },
                 files: {
                     'dist/visualcaptcha.css': 'less/visualcaptcha.less'
+                }
+            },
+            source: {
+                options: {
+                    path: ['less'],
+                    cleancss: false,
+                    optimize: "none"
+                },
+                files: {
+                    'dist/visualcaptcha.src.css': 'less/visualcaptcha.less'
                 }
             }
         },
