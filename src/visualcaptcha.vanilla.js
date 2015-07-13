@@ -180,10 +180,8 @@ define( [
 
         // Store captcha config
         captchaConfig = deepExtend( config.captcha, {
-            callbacks: {
-                loading: _loading.bind( null, element ),
-                loaded: _loaded.bind( null, element )
-            }
+            _loading: _loading.bind( null, element ),
+            _loaded: _loaded.bind( null, element )
         } );
 
         // Load namespace from data-namespace attribute

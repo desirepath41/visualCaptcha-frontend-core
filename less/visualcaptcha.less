@@ -2,14 +2,14 @@
 @blue: #235699;
 @bluelight: #3bb6e4;
 @white: #ffffff;
-@green: #d0c50d;  
+@green: #d0c50d;
 @lightgreen: #c1f7e8;
 @lightred: #f87056;
 
 .visualCaptcha {
   margin-bottom: 20px;
   min-height: 120px;
-  @media only screen and (min-width: 750px) { 
+  @media only screen and (min-width: 750px) {
     margin-bottom: 50px;
   }
 
@@ -20,7 +20,7 @@
   }
 
   .audioField {
-    font-size: 15px; 
+    font-size: 15px;
     color: #495e62;
     font-weight: 100;
     padding: 5px;
@@ -28,7 +28,7 @@
     height: 40px;
     width: 100%;
     .rounded(4px);
-    @media only screen and (max-width: 360px) { 
+    @media only screen and (max-width: 360px) {
       margin-bottom: 15px;
     }
     @media only screen and (min-width: 360px) {
@@ -46,12 +46,12 @@
   padding: 10px;
   text-align: center;
   font-family: 'Oxygen', sans-serif;
-  font-size: 18px; 
+  font-size: 18px;
   color: #219589;
   font-weight: 100;
   margin: 20px 0 24px;
   @media only screen and (max-width: 360px) {
-    font-size: 16px; 
+    font-size: 16px;
   }
 }
 
@@ -68,9 +68,9 @@
   vertical-align: middle;
   @media only screen and (min-width: 750px) {
     margin-right: 15px;
-  } 
+  }
   .img {
-    padding: 4px; 
+    padding: 4px;
     border: 1px solid @white;
     display: inline-block;
 
@@ -80,49 +80,32 @@
     }
   }
   img {
-    /*
-    max-width: 58px;
-    max-height: 58px; 
-    */
     width: 32px;
     height: 32px;
-    z-index: 5; 
+    z-index: 5;
 
     transition: all 200ms;
     -webkit-transition: all 200ms;
-
-    /* RetinaRes -------- 
-    @media
-    only screen and (min--moz-device-pixel-ratio: 1.5),
-    only screen and (-o-min-device-pixel-ratio: 3/2),
-    only screen and (-webkit-min-device-pixel-ratio: 1.5),
-    only screen and (min-device-pixel-ratio: 1.5),
-    only screen and (min-resolution: 1.5dppx) { 
-      max-width: 42px;
-      max-height: 42px; 
-      background:red; 
-    }
-    */ 
 
     &:hover {
       cursor: pointer;
     }
   }
 
-  .visualCaptcha-button-group { 
+  .visualCaptcha-button-group {
     @media only screen and (max-width: 360px) {
       text-align: center;
       margin-top: 15px;
     }
     @media only screen and (min-width: 750px) {
-      float: right; 
+      float: right;
     }
   }
 
   .visualCaptcha-selected {
     background-color: @lightgreen;
     .rounded(4px);
-    padding: 4px; 
+    padding: 4px;
     border: 1px dashed #099a9f;
 
     @media only screen and (min-width: 750px) {
@@ -149,9 +132,9 @@
 }
 
 .visualCaptcha-accessibility-button {
-  padding: 9px 10px 7px; 
+  padding: 9px 10px 7px;
   border: 1px solid black;
-  
+
   img {
     width: 16px;
     height: 16px;
@@ -183,8 +166,6 @@
 }
 
 div.visualCaptcha .visualCaptcha-show {
-  //display: block !important;
-
   -webkit-animation: fadeIn 300ms;
   animation: fadeIn 300ms;
 }

@@ -30,7 +30,9 @@ define([ 'visualcaptcha/xhr-request' ], function( xhrRequest ) {
             imageName: '',
             imageValues: [],
             /* CALLBACKS */
-            callbacks: {}
+            callbacks: {},
+            _loading: function() {},
+            _loaded: function() {}
         };
 
         // Update and return the random nonce
@@ -76,7 +78,7 @@ define([ 'visualcaptcha/xhr-request' ], function( xhrRequest ) {
                 config.routes.audio = options.routes.audio;
             }
         }
-        
+
         if ( options.randomParam ) {
             config.randomParam = options.randomParam;
         }
@@ -89,6 +91,14 @@ define([ 'visualcaptcha/xhr-request' ], function( xhrRequest ) {
             if ( options.callbacks.loaded ) {
                 config.callbacks.loaded = options.callbacks.loaded;
             }
+        }
+
+        if ( options._loading ) {
+          config._loading = options._loading;
+        }
+
+        if ( options._loaded ) {
+          config._loaded = options._loaded;
         }
 
         return config;

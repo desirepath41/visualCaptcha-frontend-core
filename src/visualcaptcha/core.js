@@ -35,6 +35,8 @@ define( function() {
         // URL must be loaded after nonce is applied
         startURL = _startUrl( config );
 
+        config._loading( core );
+
         if ( config.callbacks.loading ) {
             config.callbacks.loading( core );
         }
@@ -62,6 +64,8 @@ define( function() {
             // Set loaded state
             config.isLoading = false;
             config.hasLoaded = true;
+
+            config._loaded( core );
 
             if ( config.callbacks.loaded ) {
                 config.callbacks.loaded( core );

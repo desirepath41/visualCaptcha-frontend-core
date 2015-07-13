@@ -170,10 +170,8 @@ define( [
                 captchaConfig;
 
             captchaConfig = $.extend( config.captcha, {
-                callbacks: {
-                    loading: _loading.bind( null, config, element ),
-                    loaded: _loaded.bind( null, config, element )
-                }
+                _loading: _loading.bind( null, config, element ),
+                _loaded: _loaded.bind( null, config, element )
             } );
 
             // Load namespace from data-namespace attribute on element

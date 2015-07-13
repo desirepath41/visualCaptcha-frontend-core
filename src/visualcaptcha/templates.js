@@ -29,12 +29,12 @@ define( function() {
 
          btnAccessibility =
             '<div class="visualCaptcha-accessibility-button">' +
-                '<img src="{path}accessibility{retinaExtra}.png" title="{accessibilityTitle}" alt="{accessibilityAlt}" />' +
+                '<a href="#"><img src="{path}accessibility{retinaExtra}.png" title="{accessibilityTitle}" alt="{accessibilityAlt}" /></a>' +
             '</div>';
 
         btnRefresh =
             '<div class="visualCaptcha-refresh-button">' +
-                '<img src="{path}refresh{retinaExtra}.png" title="{refreshTitle}" alt="{refreshAlt}" />' +
+                '<a href="#"><img src="{path}refresh{retinaExtra}.png" title="{refreshTitle}" alt="{refreshAlt}" /></a>' +
             '</div>';
 
         string =
@@ -91,7 +91,7 @@ define( function() {
         for ( var i = 0, l = captcha.numberOfImages(); i < l; i++ ) {
             string =
                 '<div class="img">' +
-                    '<img src="{imageUrl}" id="visualCaptcha-img-{i}" data-index="{i}" alt="" title="" />' +
+                    '<a href="#"><img src="{imageUrl}" id="visualCaptcha-img-{i}" data-index="{i}" alt="" title="" /></a>' +
                 '</div>';
 
             params = {
