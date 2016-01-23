@@ -13,7 +13,8 @@ define( [
             var _request = function( url, callback ) {
                 $http({
                     method: 'GET',
-                    url: url
+                    url: url,
+                    withCredentials: true
                 }).success( callback );
             };
             return {
