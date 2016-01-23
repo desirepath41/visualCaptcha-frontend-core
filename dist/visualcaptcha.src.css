@@ -1,4 +1,4 @@
-/*! visualCaptcha - v0.0.7 - 2016-01-23
+/*! visualCaptcha - v0.0.8 - 2016-01-23
 * http://visualcaptcha.net
 * Copyright (c) 2016 emotionLoop; Licensed MIT */
 
